@@ -7,7 +7,7 @@ export default {
     return {
       apiBaseUrl: 'http://127.0.0.1:8000/api',
       apiUrls: {
-        projects: '\projects' 
+        projects: '/projects' 
       }, 
       projects: []
     }
@@ -18,9 +18,10 @@ export default {
   methods: {
     getProjects() {
       axios.get(this.apiBaseUrl + this.apiUrls.projects)
-      .then((response) => (
-        console.log(response)
-      ))}
+      .then((response) => {
+        console.log(response.data.results);
+        this.projects = (response.data.results);
+      })}
   },
   created() {
     this.getProjects(); 
@@ -29,7 +30,7 @@ export default {
 </script>
 
 <template>
-  <VueMain/>
+  <VueMain :data="projects"/>
 </template>
 
 

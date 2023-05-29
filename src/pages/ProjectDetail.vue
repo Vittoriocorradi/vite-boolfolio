@@ -1,19 +1,17 @@
 <script>
 import axios from 'axios';
+import store from '../store';
 export default {
     name: 'ProjectDetail',
     data() {
         return {
-            apiBaseUrl: 'http://127.0.0.1:8000/api',
-            apiUrls: {
-                projects: '/projects'
-            },
+            store,
             project: []
         }
     },
     methods: {
         getProject() {
-            axios.get(this.apiBaseUrl + this.apiUrls.projects + "/" + this.$route.params.slug)
+            axios.get(`${this.store.apiBaseUrl}/projects/${this.$route.params.slug}`)
                 .then((response) => {
                     console.log(response);
                     this.project = response.data.results;

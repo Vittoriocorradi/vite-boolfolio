@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import store from '../store';
 import ProjectCard from '../components/ProjectCard.vue';
 export default {
     name: 'AppProjects',
@@ -8,16 +9,13 @@ export default {
     },
     data() {
         return {
-            apiBaseUrl: 'http://127.0.0.1:8000/api',
-            apiUrls: {
-                projects: '/projects'
-            },
+            store,
             projects: []
         }
     },
     methods: {
         getProjects() {
-            axios.get(this.apiBaseUrl + this.apiUrls.projects)
+            axios.get(`${this.store.apiBaseUrl}/projects`)
                 .then((response) => {
                     // console.log(response.data.results);
                     this.projects = (response.data.results);

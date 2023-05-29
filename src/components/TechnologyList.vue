@@ -7,7 +7,8 @@ export default {
         return {
             store,
             currentTechnology: '',
-            technologies: []
+            technologies: [],
+            technologiesShown: false
         }
     },
     methods: {
@@ -24,6 +25,9 @@ export default {
         changePage(slug){
             this.currentTechnology = slug;
             this.$router.push({name: 'technology', params:{slug: this.currentTechnology}});
+        },
+        showTechnologies() {
+            this.technologiesShown = !this.technologiesShown
         }
     },
     created(){
@@ -37,8 +41,9 @@ export default {
         <option :value="type.slug" v-for="type in types">{{ type.name }}</option>
     </select> -->
     <ul class="list-unstyled m-0">
+        <li @click="showTechnologies">Technologies</li>
         <li 
-            v-if="technologies.length > 0" 
+            v-show="technologiesShown === true" 
             v-for="technology in technologies" 
             :value="technology.slug" 
             @click="changePage(technology.slug)"

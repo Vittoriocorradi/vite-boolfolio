@@ -2,10 +2,12 @@
 import axios from 'axios';
 import store from '../store';
 import ProjectCard from '../components/ProjectCard.vue';
+import TechnologyList from '../components/TechnologyList.vue';
 export default {
     name: 'AppTechnologies',
     components: {
-        ProjectCard
+        ProjectCard,
+        TechnologyList
     },
     data() {
         return {
@@ -38,21 +40,29 @@ export default {
 
 <template>
     <section v-if="technology">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <h1 class="mt-5 mb-3">Technology: {{ technology.name }}</h1>
-                <div>
-                    <router-link :to="{ name: 'projects'}" class="btn btn-success">
-                        Back to projects
-                    </router-link>
-                </div>
+        <div class="row">
+            <div class="col-1 d-flex justify-content-center my-4">
+                <TechnologyList />
             </div>
+            <div class="col-10">
 
-            <div class="row my-4 gy-4">
-                <div class="col col-md-4" v-for="project in technology.projects">
-                    <ProjectCard :project="project" />
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1 class="mt-5 mb-3">Technology: {{ technology.name }}</h1>
+                    <div>
+                        <router-link :to="{ name: 'projects' }" class="btn btn-success">
+                            Back to projects
+                        </router-link>
+                    </div>
+                </div>
+
+                <div class="row my-4 gy-4">
+                    <div class="col col-md-4" v-for="project in technology.projects">
+                        <ProjectCard :project="project" />
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- <div class="container"> -->
+        <!-- </div> -->
     </section>
 </template>

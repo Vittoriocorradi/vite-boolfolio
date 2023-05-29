@@ -41,7 +41,7 @@ export default {
         <option :value="type.slug" v-for="type in types">{{ type.name }}</option>
     </select> -->
     <ul class="list-unstyled m-0">
-        <li @click="showTechnologies">Technologies</li>
+        <li class="mb-1" @click="showTechnologies">Technologies</li>
         <li 
             v-show="technologiesShown === true" 
             v-for="technology in technologies" 

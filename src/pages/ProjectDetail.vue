@@ -25,9 +25,23 @@ export default {
 </script>
 
 <template>
-    <router-link :to="{ name: 'projects' }" class="btn btn-primary">
-        Back to projects list
-    </router-link>
-    <h1>{{ project.title }}</h1>
+    <div class="d-flex justify-content-between align-items-center my-4">
+        <h1>{{ project.title }}</h1>
+        <div>
+            <router-link :to="{ name: 'projects' }" class="btn btn-success">
+                Back to projects
+            </router-link>
+        </div>
+    </div>
+    <h2 v-if="project.type !== null">
+        <router-link :to="{ name: 'type', params: { slug: project.type.slug } }" class="text-decoration-none">
+            {{ project.type.name }}
+        </router-link>
+    </h2>
     <p>{{ project.overview }}</p>
+    <div v-if="project.technologies !== none" v-for="technology in project.technologies">
+        <router-link :to="{ name: 'technology', params: { slug: technology.slug } }" class="text-decoration-none">
+            {{ technology.name }}
+        </router-link>
+    </div>
 </template>

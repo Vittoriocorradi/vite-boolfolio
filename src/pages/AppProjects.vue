@@ -2,10 +2,12 @@
 import axios from 'axios';
 import store from '../store';
 import ProjectCard from '../components/ProjectCard.vue';
+import TechnologyList from '../components/TechnologyList.vue';
 export default {
     name: 'AppProjects',
     components: {
-        ProjectCard
+        ProjectCard,
+        TechnologyList
     },
     data() {
         return {
@@ -31,12 +33,17 @@ export default {
 <template>
     <h1>My Projects</h1>
     <main>
-        <div class="container">
-            <div class="row my-4 gy-4">
-                <div class="col col-md-4" v-for="project in projects">
-                    <ProjectCard :project="project" />
+        <div class="row">
+                <div class="col-1 d-flex justify-content-center my-4">
+                    <TechnologyList/>
                 </div>
-            </div>
+            <!-- <div class="container"> -->
+                <div class="col-10 row my-4 gy-4">
+                    <div class="col col-md-4" v-for="project in projects">
+                        <ProjectCard :project="project" />
+                    </div>
+                </div>
+            <!-- </div> -->
         </div>
     </main>
 </template>

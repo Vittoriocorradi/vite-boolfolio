@@ -14,7 +14,9 @@ export default {
             <h5 class="card-title">{{ project.title }}</h5>
             <p v-if="project.overview" class="card-text">{{ project.overview.substring(0, this.project.overviewLenght) + '...' }}
             </p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <router-link :to="{ name: 'project', params: { slug: project.slug } }" class="btn btn-primary">
+                Project Details
+            </router-link>
         </div>
     </div>
 </template>
